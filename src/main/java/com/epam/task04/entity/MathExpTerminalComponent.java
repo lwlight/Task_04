@@ -27,11 +27,13 @@ public class MathExpTerminalComponent implements Component {
         throw new UnsupportedOperationException();
     }
 
-    public String getValue() {
-        return value;
-    }
-
+    @Override
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String getValue() {
+        return this.value;
     }
 }

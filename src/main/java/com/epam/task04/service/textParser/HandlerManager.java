@@ -2,9 +2,7 @@ package com.epam.task04.service.textParser;
 
 import com.epam.task04.entity.Component;
 
-/**
- * Created by lwLight on 11.11.2017.
- */
+
 public final class HandlerManager {
     private final static HandlerManager instance = new HandlerManager();
     private ParagraphsHandler paragraphsHandler = new ParagraphsHandler();

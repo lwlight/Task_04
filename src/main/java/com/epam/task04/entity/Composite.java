@@ -29,4 +29,14 @@ public class Composite implements Component{
     public void removeComponent(Component component) {
         sentenceComponents.remove(component);
     }
+
+    @Override
+    public void setValue(String value) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String getValue() {
+        throw new UnsupportedOperationException();
+    }
 }

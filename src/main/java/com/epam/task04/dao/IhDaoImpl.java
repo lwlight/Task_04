@@ -1,11 +1,15 @@
 package com.epam.task04.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class IHDAOImpl implements IHDAO {
+public class IhDaoImpl implements IhDao {
+    private static final Logger LOGGER = LogManager.getLogger(IhDaoImpl.class.getName());
     @Override
     public String readFullTextValue() {
         String fullTextValue = readTextFromFile();
@@ -13,7 +17,7 @@ public class IHDAOImpl implements IHDAO {
     }
 
     private String readTextFromFile(){
-        try(InputStream fis = IHDAOImpl.class.getClassLoader().getResourceAsStream("Text.txt");
+        try(InputStream fis = IhDaoImpl.class.getClassLoader().getResourceAsStream("Text.txt");
             BufferedReader bfr = new BufferedReader(new InputStreamReader(fis))){
             String totalText = "";
             String readed = "";
@@ -21,9 +25,10 @@ public class IHDAOImpl implements IHDAO {
             while ((readed = bfr.readLine()) != null) {
                 totalText += (readed + "\n");
             }
+
             return totalText.trim();
         } catch (IOException e){
-            e.printStackTrace();
+            LOGGER.error("Fail to read from file");
             return null;
         }
     }

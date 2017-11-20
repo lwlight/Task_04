@@ -2,7 +2,7 @@ package com.epam.task04.service;
 
 public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
-    private final IHService ihService = new IHServiceImpl();
+    private final IhService ihService = new IhServiceImpl();
 
     private ServiceFactory(){}
 
@@ -10,7 +10,7 @@ public final class ServiceFactory {
         return instance;
     }
 
-    public IHService getIHService() {
+    public IhService getIHService() {
         return ihService;
     }
 }

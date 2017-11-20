@@ -1,13 +1,16 @@
 package com.epam.task04.service.mathInterpreter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by lwLight on 11.11.2017.
- */
+
 public class InterpreterClient {
+    private static final Logger LOGGER = LogManager.getLogger(InterpreterClient.class.getName());
+
     private static final InterpreterClient instance = new InterpreterClient();
 
     private List<AbstractMathExpression> listExpression = new ArrayList<>();
@@ -15,7 +18,6 @@ public class InterpreterClient {
     private InterpreterClient(){}
 
     public static InterpreterClient getInstance(){
-
         return instance;
     }
 
@@ -31,12 +33,12 @@ public class InterpreterClient {
 
     private void parse(String expression){
         for (String lexeme : expression.split("\\p{Blank}+")){
-            System.out.println("InterpreterClient : parse => " + lexeme);
             if (lexeme.isEmpty()){
                 continue;
             }
 
             char temp = lexeme.charAt(0);
+
             switch (temp) {
                 case '+':
                     listExpression.add(new TerminalExpressionPlus());

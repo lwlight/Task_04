@@ -1,10 +1,16 @@
 package com.epam.task04.service.mathInterpreter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.*;
 
-public class ConvertInfixToRPN {
+public class ConvertInfixToRpn {
+    private static final Logger LOGGER = LogManager.getLogger(ConvertInfixToRpn.class.getName());
 
     public String convertInfixToRPN(String infixNotation) {
+        LOGGER.debug("Infix notation entred: " + infixNotation);
+
         String[] infixMass = infixNotation.split(" ");
 
         Map<String, Integer> prededence = new HashMap<>();
@@ -32,7 +38,7 @@ public class ConvertInfixToRPN {
                 operatorsStack.pop();
                 continue;
             }
-            // an operator
+
             if (prededence.containsKey(token)) {
                 while (!operatorsStack.empty() && prededence.get(token) <= prededence.get(operatorsStack.peek())) {
                     infixNotationList.add(operatorsStack.pop());
@@ -48,7 +54,7 @@ public class ConvertInfixToRPN {
 
             throw new IllegalArgumentException("Invalid input");
         }
-        // at the end, pop all the elements in S to Q
+
         while (!operatorsStack.isEmpty()) {
             infixNotationList.add(operatorsStack.pop());
         }
@@ -56,6 +62,8 @@ public class ConvertInfixToRPN {
         for (String element : infixNotationList){
             result += element + " ";
         }
+
+        LOGGER.debug("Convert result: " + result);
 
         return result.trim();
     }

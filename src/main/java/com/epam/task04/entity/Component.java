@@ -10,4 +10,8 @@ public interface Component {
     void setComponents(List<Component> components);
 
     void removeComponent(Component component);
+
+    void setValue(String value);
+
+    String getValue();
 }
